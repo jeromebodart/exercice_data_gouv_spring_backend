@@ -1,6 +1,6 @@
 package com.example.domain.entreprise;
 
-public class IdentificationEntreprise extends Entreprise {
+public class IdentificationEntreprise {
 	private Long id;
 	private String raison_sociale;
 	private String sigle;

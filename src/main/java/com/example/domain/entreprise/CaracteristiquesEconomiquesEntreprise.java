@@ -1,6 +1,6 @@
 package com.example.domain.entreprise;
 
-public class CaracteristiquesEconomiquesEntreprise extends Entreprise {
+public class CaracteristiquesEconomiquesEntreprise {
 	private Long id;
 	private int nature_juridique;
 	private String lib_nature_juridique;

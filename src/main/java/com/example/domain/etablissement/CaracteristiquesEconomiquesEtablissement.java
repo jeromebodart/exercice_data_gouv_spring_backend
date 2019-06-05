@@ -1,8 +1,7 @@
 package com.example.domain.etablissement;
 
-import com.example.domain.Etablissement;
 
-public class CaracteristiquesEconomiquesEtablissement extends Etablissement {
+public class CaracteristiquesEconomiquesEtablissement {
 	private Long id;
 
 	private String nature;

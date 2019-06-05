@@ -1,8 +1,6 @@
 package com.example.domain.etablissement;
 
-import com.example.domain.Etablissement;
-
-public class Informations extends Etablissement {
+public class Informations {
 	private Long id;
 	private String enseigne;
 	private boolean ind_publipo;

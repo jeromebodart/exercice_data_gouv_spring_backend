@@ -1,8 +1,6 @@
 package com.example.domain.etablissement;
 
-import com.example.domain.Etablissement;
-
-public class AdresseNormalisee  extends Etablissement {
+public class AdresseNormalisee  {
 	private Long id;
 
 	private String l1_normalisee;

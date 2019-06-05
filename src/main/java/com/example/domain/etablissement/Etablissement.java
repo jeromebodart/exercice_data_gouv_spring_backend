@@ -1,17 +1,8 @@
-package com.example.domain;
+package com.example.domain.etablissement;
 
-import com.example.domain.entreprise.Entreprise;
-import com.example.domain.etablissement.AdresseDeclaree;
-import com.example.domain.etablissement.AdresseGeographique;
-import com.example.domain.etablissement.AdresseNormalisee;
-import com.example.domain.etablissement.CaracteristiquesEconomiquesEtablissement;
-import com.example.domain.etablissement.Informations;
-import com.example.domain.etablissement.Localisation;
-import com.example.domain.etablissement.MiseAJour;
 
-public class Etablissement extends Entreprise {
+public class Etablissement {
 	private Long id;
-	private Entreprise entreprise;
 	private int nic;
 	private AdresseDeclaree adressedeclaree;
 	private AdresseNormalisee adresse_normalisee;
@@ -25,12 +16,6 @@ public class Etablissement extends Entreprise {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Entreprise getEntreprise() {
-		return entreprise;
-	}
-	public void setEntreprise(Entreprise entreprise) {
-		this.entreprise = entreprise;
 	}
 	public int getNic() {
 		return nic;

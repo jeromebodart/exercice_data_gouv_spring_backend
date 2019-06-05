@@ -1,11 +1,21 @@
 package com.example.domain.entreprise;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.domain.etablissement.Etablissement;
+
 public class Entreprise {
 	private Long id;
 	private Long siren;
+	private List<Etablissement> etablissements;
 	private InformationsSiege siege;
 	private IdentificationEntreprise identification_entreprise;
 	private CaracteristiquesEconomiquesEntreprise caracteristiques_economiques;
+	
+	public Entreprise() {
+		super();
+	}
 	public Long getId() {
 		return id;
 	}
@@ -17,6 +27,12 @@ public class Entreprise {
 	}
 	public void setSiren(Long siren) {
 		this.siren = siren;
+	}
+	public List<Etablissement> getEtablissements() {
+		return etablissements;
+	}
+	public void setEtablissements(ArrayList<Etablissement> etablissements) {
+		this.etablissements = etablissements;
 	}
 	public InformationsSiege getSiege() {
 		return siege;
