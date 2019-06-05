@@ -1,8 +1,6 @@
 package com.example.domain.etablissement;
 
-import com.example.domain.Etablissement;
-
-public class MiseAJour extends Etablissement {
+public class MiseAJour {
 	private Long id;
 	private String date;
 	private boolean modification_activite_etablissement;

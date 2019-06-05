@@ -8,10 +8,23 @@
         <result property="siren" 			column="siren" />
         <association property="siege" select="com.example.mapper.SiegeMapper.get" column="id_siege" />
         <association property="identification_entreprise" select="com.example.mapper.IdentificationEntrepriseMapper.get" column="id_identification_entreprise" />
+        <!-- http://dongchuan.github.io/mybatis/2016/04/17/MyBatis-Advanced.html -->
+        <collection property="etablissements" javaType="ArrayList" column="id" ofType="com.example.domain.etablissement.Etablissement"> <!--ofType="com.example.domain.etablissement.Etablissement">-->
+            <id 	property="id" 						column="id" />
+            <result property="nic" 			column="nic" />
+            <!--<result property="id_adresse_declaree" 			column="id_adresse_declaree" />
+            <result property="id_adresse_normalisee" 			column="id_adresse_normalisee" />
+            <result property="id_info" 			column="id_info" />
+            <result property="id_adresse_geographique" 			column="id_adresse_geographique" />
+            <result property="id_localisation_geographique" 			column="id_localisation_geographique" />
+            <result property="id_caracteristiques_economiques" 			column="id_caracteristiques_economiques" />
+            <result property="id_updates" 			column="id_updates" />-->
+        </collection>
     </resultMap>
 
-<select id="findAll" resultType="com.example.domain.entreprise.Entreprise" resultMap="Entreprise_ResultMap">
-    select * from entreprise 
+
+<select id="findAll" resultMap="Entreprise_ResultMap"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
+    select * from entreprise inner join etablissement on etablissement.id_entreprise = entreprise.id
 </select>
 <select id="findOne" resultType="com.example.domain.entreprise.Entreprise">
     select * from entreprise where id = #{id}

@@ -1,8 +1,6 @@
 package com.example.domain.etablissement;
 
-import com.example.domain.Etablissement;
-
-public class Localisation extends Etablissement {
+public class Localisation {
 	private Long id;
 	private String region;
 	private String lib_region;

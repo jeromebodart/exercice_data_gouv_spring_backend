@@ -1,8 +1,6 @@
 package com.example.domain.etablissement;
 
-import com.example.domain.Etablissement;
-
-public class AdresseGeographique extends Etablissement {
+public class AdresseGeographique {
 	private Long id;
 
 	private String numvoie;
