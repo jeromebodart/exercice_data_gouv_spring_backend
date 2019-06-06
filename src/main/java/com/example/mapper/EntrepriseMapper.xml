@@ -8,26 +8,30 @@
         <result property="siren" 			column="siren" />
         <association property="siege" select="com.example.mapper.SiegeMapper.get" column="id_siege" />
         <association property="identification_entreprise" select="com.example.mapper.IdentificationEntrepriseMapper.get" column="id_identification_entreprise" />
+        <association property="caracteristiques_economiques" select="com.example.mapper.CaracteristiquesEconomiquesEntrepriseMapper.get" column="id_caracteristiques" />
         <!-- http://dongchuan.github.io/mybatis/2016/04/17/MyBatis-Advanced.html -->
-        <collection property="etablissements" javaType="ArrayList" column="id" ofType="com.example.domain.etablissement.Etablissement"> <!--ofType="com.example.domain.etablissement.Etablissement">-->
-            <id 	property="id" 						column="id" />
+        <collection property="etablissements" javaType="ArrayList" column="id_entreprise" ofType="com.example.domain.etablissement.Etablissement"> <!--ofType="com.example.domain.etablissement.Etablissement">-->
+            <id 	property="id" 						column="etablissementID" />
+            <result 	property="id_entreprise" 						column="id_entreprise" />
             <result property="nic" 			column="nic" />
-            <!--<result property="id_adresse_declaree" 			column="id_adresse_declaree" />
-            <result property="id_adresse_normalisee" 			column="id_adresse_normalisee" />
-            <result property="id_info" 			column="id_info" />
-            <result property="id_adresse_geographique" 			column="id_adresse_geographique" />
-            <result property="id_localisation_geographique" 			column="id_localisation_geographique" />
-            <result property="id_caracteristiques_economiques" 			column="id_caracteristiques_economiques" />
-            <result property="id_updates" 			column="id_updates" />-->
         </collection>
     </resultMap>
 
 
 <select id="findAll" resultMap="Entreprise_ResultMap"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
-    select * from entreprise inner join etablissement on etablissement.id_entreprise = entreprise.id
+    select * from entreprise 
+	inner join 
+    (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic
+    from etablissement) as e
+    on e.id_entreprise = entreprise.id
 </select>
-<select id="findOne" resultType="com.example.domain.entreprise.Entreprise">
-    select * from entreprise where id = #{id}
+<select id="findOne" resultMap="Entreprise_ResultMap">
+    select * from entreprise 
+	inner join 
+    (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic
+    from etablissement) as e
+    on e.id_entreprise = entreprise.id
+    where e.id_entreprise = #{id}
 </select>
 <insert id="save" useGeneratedKeys="true" keyProperty="id">
     insert into entreprise (siren, id_siege, id_identification_entreprise, id_caracteristiques) values (#{siren}, #{id_siege}, #{id_identification_entreprise}, #{id_caracteristiques})

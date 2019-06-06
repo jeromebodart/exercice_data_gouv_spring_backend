@@ -16,5 +16,18 @@
 <select id="get" resultType="com.example.domain.entreprise.IdentificationEntreprise" resultMap="IdentificationEntreprise_ResultMap">
     select * from identification_entreprise where identification_entreprise.id= #{id}
 </select>
-
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into identification_entreprise (siren, id_siege, id_identification_entreprise, id_caracteristiques)
+    values (#{siren}, #{id_siege}, #{id_identification_entreprise}, #{id_caracteristiques})
+</insert>
+<update id="update">
+    update identification_entreprise set 
+    siren = #{siren},
+    id_siege = #{id_siege},
+    id_identification_entreprise = #{id_identification_entreprise},
+    id_caracteristiques= #{id_caracteristiques } where id = #{id}
+</update>
+<delete id="delete">
+    delete from identification_entreprise where id = #{id}
+</delete>
 </mapper>

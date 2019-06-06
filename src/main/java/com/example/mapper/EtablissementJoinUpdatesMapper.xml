@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EtablissementJoinUpdatesMapper">
+
+
+    <resultMap id="EtablissementJoinUpdates_ResultMap" type="com.example.domain.etablissement.EtablissementJoinUpdates">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+
+<select id="findAll" resultMap="EtablissementJoinUpdates_ResultMap"> 
+    select * from etablissement_join_updates
+</select>
+<select id="findOne" resultType="com.example.domain.etablissement.EtablissementJoinUpdates">
+    select * from etablissement_join_updates where id = #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into etablissement_join_updates (id, id_etablissement, id_updates) values (#{id}, #{id_etablissement}, #{id_updates})
+</insert>
+<update id="update">
+    update etablissement_join_updates set id = #{id}, id_etablissement = #{id_etablissement}, id_updates= #{id_updates} where id = #{id}
+</update>
+<delete id="delete">
+    delete from etablissement_join_updates where id = #{id}
+</delete>
+</mapper>

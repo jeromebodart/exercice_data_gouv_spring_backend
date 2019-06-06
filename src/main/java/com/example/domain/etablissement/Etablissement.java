@@ -1,33 +1,43 @@
 package com.example.domain.etablissement;
 
+import java.util.List;
+
+import com.example.domain.entreprise.Entreprise;
+
 
 public class Etablissement {
 	private Long id;
-	private int nic;
-	private AdresseDeclaree adressedeclaree;
+	private String nic;
+	private Integer id_entreprise;
+	private Entreprise entreprise;
+	private AdresseDeclaree adresse_declaree;
 	private AdresseNormalisee adresse_normalisee;
 	private Informations info;
 	private AdresseGeographique adressegeographique;
 	private Localisation localisation;
 	private CaracteristiquesEconomiquesEtablissement economies;
-	private MiseAJour mises_a_jour;
+	private List<MiseAJour> mises_a_jour;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getNic() {
+	public String getNic() {
 		return nic;
 	}
-	public void setNic(int nic) {
+		
+	public Integer getId_entreprise() {
+		return id_entreprise;
+	}
+	public void setId_entreprise(Integer id_entreprise) {
+		this.id_entreprise = id_entreprise;
+	}
+	public Entreprise getEntreprise() {
+		return entreprise;
+	}
+	public void setNic(String nic) {
 		this.nic = nic;
-	}
-	public AdresseDeclaree getAdressedeclaree() {
-		return adressedeclaree;
-	}
-	public void setAdressedeclaree(AdresseDeclaree adressedeclaree) {
-		this.adressedeclaree = adressedeclaree;
 	}
 	public AdresseNormalisee getAdresse_normalisee() {
 		return adresse_normalisee;
@@ -59,10 +69,16 @@ public class Etablissement {
 	public void setEconomies(CaracteristiquesEconomiquesEtablissement economies) {
 		this.economies = economies;
 	}
-	public MiseAJour getMises_a_jour() {
+	public AdresseDeclaree getAdresse_declaree() {
+		return adresse_declaree;
+	}
+	public void setAdresse_declaree(AdresseDeclaree adresse_declaree) {
+		this.adresse_declaree = adresse_declaree;
+	}
+	public List<MiseAJour> getMises_a_jour() {
 		return mises_a_jour;
 	}
-	public void setMises_a_jour(MiseAJour mises_a_jour) {
+	public void setMises_a_jour(List<MiseAJour> mises_a_jour) {
 		this.mises_a_jour = mises_a_jour;
 	}
 }

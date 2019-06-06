@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AdresseDeclareeMapper">
+
+
+    <resultMap id="AdresseDeclaree_ResultMap" type="com.example.domain.etablissement.AdresseDeclaree">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.AdresseDeclaree" resultMap="AdresseDeclaree_ResultMap">
+    select * from adresse_declaree where adresse_declaree.id = #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into adresse_declaree (l1_declaree, l2_declaree, l3_declaree, l4_declaree, l5_declaree, l6_declaree, l7_declaree) 
+    values (#{l1_declaree}, #{l2_declaree}, #{l3_declaree}, #{l4_declaree}, #{l5_declaree}, #{l6_declaree}, #{l7_declaree})
+</insert>
+<update id="update">
+    update adresse_declaree set 
+    l1_declaree = #{l1_declaree},
+    l2_declaree = #{l2_declaree},
+    l3_declaree = #{l3_declaree},
+    l4_declaree = #{l4_declaree},
+    l5_declaree = #{l5_declaree},
+    l6_declaree = #{l6_declaree},
+    l7_declaree = #{l7_declaree} where id = #{id}
+</update>
+<delete id="delete">
+    delete from adresse_declaree where id = #{id}
+</delete>
+</mapper>

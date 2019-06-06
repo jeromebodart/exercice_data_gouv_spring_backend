@@ -3,7 +3,8 @@ package com.example.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,45 +24,41 @@ public class EntreprisesController {
     private EntrepriseService entrepriseService;
 
     @GetMapping
-    public List<Entreprise> index(Model model) {
+    public List<Entreprise> index() {
     	return entrepriseService.findAll();
-//        model.addAttribute("entreprises", entrepriseService.findAll());
-//        return "entreprises/index";
     }
-
-    @GetMapping("new")
-    public String newEntreprise() {
-        return "entreprises/new";
-    }
-
-    @GetMapping("{id}/edit")
-    public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("entreprise", entrepriseService.findOne(id));
-        return "entreprises/edit";
-    }
-
+    
     @GetMapping("{id}")
-    public String show(@PathVariable Long id, Model model) {
-        model.addAttribute("entreprise", entrepriseService.findOne(id));
-        model.addAttribute("entreprises.siege", entrepriseService.findOne(id).getSiege());
-        return "entreprises/show";
+    public ResponseEntity show(@PathVariable Long id) {
+    	Entreprise entreprise =  entrepriseService.findOne(id);
+		if (entreprise == null) {
+			return new ResponseEntity("No Enterprise found for ID " + id, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity(entreprise, HttpStatus.OK);
     }
 
     @PostMapping
-    public String create(@ModelAttribute Entreprise entreprise) {
+    public ResponseEntity create(@ModelAttribute Entreprise entreprise) {
     	entrepriseService.save(entreprise);
-        return "redirect:/entreprises";
+    	return  new ResponseEntity(entreprise, HttpStatus.OK);
     }
     @PutMapping("{id}")
-    public String update(@PathVariable Long id, @ModelAttribute Entreprise entreprise) {
+    public ResponseEntity update(@PathVariable Long id, @PathVariable Long id_siege, @PathVariable Long id_identification_entreprise, @PathVariable Long id_caracteristiques, @ModelAttribute Entreprise entreprise) {
+		if (entreprise == null) {
+			return new ResponseEntity("No Enterprise found for ID " + id, HttpStatus.NOT_FOUND);
+		}
     	entreprise.setId(id);
+//    	entreprise.setSiege();
     	entrepriseService.update(entreprise);
-        return "redirect:/entreprises";
+        return  new ResponseEntity(entreprise, HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public String destroy(@PathVariable Long id) {
+    public ResponseEntity destroy(@PathVariable Long id) {
     	entrepriseService.delete(id);
-        return "redirect:/entreprises";
-    }
+		if (entrepriseService.findOne(id) == null) {
+			return new ResponseEntity("No Enterprise found for ID " + id, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity(id, HttpStatus.OK);
+	}
 }

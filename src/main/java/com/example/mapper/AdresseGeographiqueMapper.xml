@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AdresseGeographiqueMapper">
+
+
+    <resultMap id="AdresseGeographique_ResultMap" type="com.example.domain.etablissement.AdresseGeographique">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.AdresseGeographique" resultMap="AdresseGeographique_ResultMap">
+    select * from adresse_geographique where adresse_geographique.id= #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into adresse_geographique (numvoie, indrep, typvoie, libvoie, codpos, cedex)
+    values (#{numvoie}, #{indrep}, #{typvoie}, #{libvoie}, #{codpos}, #{cedex})
+</insert>
+<update id="update">
+    update adresse_geographique set 
+    numvoie = #{numvoie},
+    indrep = #{indrep},
+    typvoie = #{typvoie},
+    libvoie = #{libvoie},
+    codpos = #{codpos},
+    cedex = #{cedex} where id = #{id}
+</update>
+<delete id="delete">
+    delete from adresse_geographique where id = #{id}
+</delete>
+</mapper>

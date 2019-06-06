@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CaracteristiquesEconomiquesEtablissementMapper">
+
+
+    <resultMap id="CaracteristiquesEconomiquesEtablissement_ResultMap" type="com.example.domain.etablissement.CaracteristiquesEconomiquesEtablissement">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.CaracteristiquesEconomiquesEtablissement" resultMap="CaracteristiquesEconomiquesEtablissement_ResultMap">
+    select * from caracteristiques_economiques_etablissement where caracteristiques_economiques_etablissement.id= #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into caracteristiques_economiques_etablissement (nature, lib_nature, activite_principale, lib_activite_principale) 
+    values (#{nature}, #{lib_nature}, #{activite_principale}, #{lib_activite_principale})
+</insert>
+<update id="update">
+    update caracteristiques_economiques_etablissement set 
+    nature = #{nature},
+    lib_nature = #{lib_nature},
+    activite_principale = #{activite_principale},
+    lib_activite_principale = #{lib_activite_principale} where id = #{id}
+</update>
+<delete id="delete">
+    delete from caracteristiques_economiques_etablissement where id = #{id}
+</delete>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.LocalisationMapper">
+
+
+    <resultMap id="Localisation_ResultMap" type="com.example.domain.etablissement.Localisation">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.Localisation" resultMap="Localisation_ResultMap">
+    select * from localisation_geographique where localisation_geographique.id= #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into localisation_geographique (region, lib_region, departement, arrondissement, canton, commune, lib_commune, departement_unite_urbaine, taille_unite_urbaine, num_unite_urbaine, epci, tcd, zemet)
+    values (#{region}, #{lib_region}, #{departement}, #{arrondissement}, #{canton}, #{commune}, #{lib_commune}, #{departement_unite_urbaine}, #{taille_unite_urbaine}, #{num_unite_urbaine}, #{epci}, #{tcd}, #{zemet})
+</insert>
+<update id="update">
+    update localisation_geographique set 
+    region = #{region},
+    lib_region = #{lib_region},
+    departement = #{departement},
+    arrondissement = #{arrondissement},
+    canton = #{canton},
+    commune = #{commune},
+    lib_commune = #{lib_commune},
+    departement_unite_urbaine = #{departement_unite_urbaine},
+    taille_unite_urbaine = #{taille_unite_urbaine},
+    num_unite_urbaine = #{num_unite_urbaine},
+    epci = #{epci},
+    tcd = #{tcd},
+    zemet= #{zemet } where id = #{id}
+</update>
+<delete id="delete">
+    delete from localisation_geographique where id = #{id}
+</delete>
+</mapper>

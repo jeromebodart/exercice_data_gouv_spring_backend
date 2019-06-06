@@ -5,14 +5,27 @@
 
     <resultMap id="InformationsSiege_ResultMap" type="com.example.domain.entreprise.InformationsSiege">
         <id 	property="id" 						column="id" />
-        <result property="nic" 			column="nic" />
+        <!-- result property="nic" 			column="nic" />
         <result property="code_region" 			column="code_region" />
         <result property="departement_commune" 			column="departement_commune" />
-        <result property="email" 			column="email" />
+        <result property="email" 			column="email" />-->
     </resultMap>
 
 <select id="get" resultType="com.example.domain.entreprise.InformationsSiege" resultMap="InformationsSiege_ResultMap">
     select * from info_siege where info_siege.id= #{id}
 </select>
-
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into info_siege (nic, code_region, departement_commune, email)
+    values (#{nic}, #{code_region}, #{departement_commune}, #{email})
+</insert>
+<update id="update">
+    update info_siege set 
+    nic = #{nic},
+    code_region = #{code_region},
+    departement_commune = #{departement_commune},
+    email= #{email} where id = #{id}
+</update>
+<delete id="delete">
+    delete from info_siege where id = #{id}
+</delete>
 </mapper>

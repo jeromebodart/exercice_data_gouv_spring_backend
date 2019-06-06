@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CaracteristiquesEconomiquesEntrepriseMapper">
+
+
+    <resultMap id="CaracteristiquesEconomiquesEntreprise_ResultMap" type="com.example.domain.entreprise.CaracteristiquesEconomiquesEntreprise">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.entreprise.CaracteristiquesEconomiquesEntreprise" resultMap="CaracteristiquesEconomiquesEntreprise_ResultMap">
+    select * from caracteristiques_economiques_entreprise where caracteristiques_economiques_entreprise.id= #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into caracteristiques_economiques_entreprise (nature_juridique, lib_nature_juridique, activite_principale, lib_activite_principale, annee_validite_activite_principale, activite_principale_registre_metier) 
+    values (#{nature_juridique}, #{lib_nature_juridique}, #{activite_principale}, #{lib_activite_principale}, #{annee_validite_activite_principale}, #{activite_principale_registre_metier})
+</insert>
+<update id="update">
+    update caracteristiques_economiques_entreprise set 
+    lib_nature_juridique = #{nature_juridique},
+    lib_nature_juridique = #{lib_nature_juridique},
+    activite_principale = #{activite_principale},
+    lib_activite_principale = #{lib_activite_principale},
+    annee_validite_activite_principale = #{annee_validite_activite_principale},
+    activite_principale_registre_metier = #{activite_principale_registre_metier} where id = #{id}
+</update>
+<delete id="delete">
+    delete from caracteristiques_economiques_entreprise where id = #{id}
+</delete>
+</mapper>

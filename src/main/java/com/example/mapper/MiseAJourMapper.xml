@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.MiseAJourMapper">
+
+
+    <resultMap id="MiseAJour_ResultMap" type="com.example.domain.etablissement.MiseAJour">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.MiseAJour" resultMap="MiseAJour_ResultMap">
+    select * from updates where updates.id= #{id}
+</select>
+<select id="findAll" resultType="com.example.domain.etablissement.MiseAJour">
+    select * from updates
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into updates (nature_update, modification_activite_etablissement, modification_nature_etablissement, modification_entreprise, date)
+    values (#{nature_update}, #{modification_activite_etablissement}, #{modification_nature_etablissement}, #{modification_entreprise})
+</insert>
+<update id="update">
+    update updates set 
+    nature_update = #{nature_update},
+    modification_activite_etablissement = #{modification_activite_etablissement}, 
+    modification_nature_etablissement = #{modification_nature_etablissement}, 
+    modification_entreprise = #{modification_entreprise}, 
+    date = #{date} where id = #{id}
+</update>
+<delete id="delete">
+    delete from updates where id = #{id}
+</delete>
+</mapper>
