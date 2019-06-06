@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AdresseNormaliseeMapper">
+
+
+    <resultMap id="AdresseNormalisee_ResultMap" type="com.example.domain.etablissement.AdresseNormalisee">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.AdresseNormalisee" resultMap="AdresseNormalisee_ResultMap">
+    select * from adresse_normalisee where adresse_normalisee.id= #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into adresse_normalisee (l1_normalisee, l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee) 
+    values (#{l1_normalisee}, #{l2_normalisee}, #{l3_normalisee}, #{l4_normalisee}, #{l5_normalisee}, #{l6_normalisee}, #{l7_normalisee})
+</insert>
+<update id="update">
+    update adresse_normalisee set 
+    l1_normalisee = #{l1_normalisee},
+    l2_normalisee = #{l2_normalisee},
+    l3_normalisee = #{l3_normalisee},
+    l4_normalisee = #{l4_normalisee},
+    l5_normalisee = #{l5_normalisee},
+    l6_normalisee = #{l6_normalisee},
+    l7_normalisee = #{l7_normalisee} where id = #{id}
+</update>
+<delete id="delete">
+    delete from adresse_normalisee where id = #{id}
+</delete>
+</mapper>

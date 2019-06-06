@@ -7,5 +7,5 @@ import java.util.List;
 import com.example.domain.entreprise.Entreprise;
 
 public class Reader {
-	private List<Entreprise> etablissements = new ArrayList<Entreprise>();
+//	private List<Entreprise> entreprise = new ArrayList<Entreprise>();
 }

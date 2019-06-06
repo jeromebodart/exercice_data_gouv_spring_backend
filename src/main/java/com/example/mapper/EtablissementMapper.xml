@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EtablissementMapper">
+
+
+    <resultMap id="Etablissement_ResultMap" type="com.example.domain.etablissement.Etablissement">
+        <id 	property="id" 						column="id" />
+        <result property="nic" 			column="nic" />
+        <association property="adresse_declaree" select="com.example.mapper.AdresseDeclareeMapper.get" column="id_adresse_declaree" />
+        <association property="adresse_normalisee" select="com.example.mapper.AdresseNormaliseeMapper.get" column="id_adresse_normalisee" />
+        <association property="info" select="com.example.mapper.InformationsMapper.get" column="id_info" />
+        <association property="adressegeographique" select="com.example.mapper.AdresseGeographiqueMapper.get" column="id_adresse_geographique" />
+        <association property="localisation" select="com.example.mapper.LocalisationMapper.get" column="id_localisation_geographique" />
+        <association property="economies" select="com.example.mapper.CaracteristiquesEconomiquesEtablissementMapper.get" column="id_caracteristiques_economiques" />
+        <collection property="mises_a_jour" javaType="ArrayList" column="id_updates" ofType="com.example.domain.etablissement.MiseAJour"> 
+            <id 	property="id" 						column="id" />
+        </collection>
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.Etablissement" resultMap="Etablissement_ResultMap">
+    select * from etablissement where etablissement.id =  #{id}
+    <!-- select * from (select * from etablissement_join_updates where etablissement_join_updates.id_etablissement =  #{id}) 
+    as filtered 
+    join updates on  filtered.id_updates = updates.id 
+    join etablissement on  filtered.id_etablissement = etablissement.id-->
+</select>
+<select id="findAll" resultMap="Etablissement_ResultMap">
+    select * from etablissement
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into etablissement (nic, id_entreprise, id_adresse_declaree, id_adresse_normalisee, id_info, id_adresse_geographique, id_localisation_geographique, id_caracteristiques_economiques)
+    values ((#{nic}, (#{id_entreprise}, (#{id_adresse_declaree}, (#{id_adresse_normalisee}, #{id_info}, #{id_adresse_geographique}, #{id_localisation_geographique}, #{id_caracteristiques_economiques})
+</insert>
+<update id="update">
+    update etablissement set 
+    nic = #{nic},
+    id_entreprise = #{id_entreprise}, 
+    id_adresse_declaree = #{id_adresse_declaree}, 
+    id_adresse_normalisee = #{id_adresse_normalisee}, 
+    id_info = #{id_info}, 
+    id_adresse_geographique = #{id_adresse_geographique},
+    id_localisation_geographique = #{id_localisation_geographique},
+    id_caracteristiques_economiques= #{id_caracteristiques_economiques } where id = #{id}
+</update>
+<delete id="delete">
+    delete from etablissement where id = #{id}
+</delete>
+</mapper>

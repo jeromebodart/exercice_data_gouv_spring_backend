@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.InformationsMapper">
+
+
+    <resultMap id="Informations_ResultMap" type="com.example.domain.etablissement.Informations">
+        <id 	property="id" 						column="id" />
+    </resultMap>
+
+<select id="get" resultType="com.example.domain.etablissement.Informations" resultMap="Informations_ResultMap">
+    select * from informations_etablissement where informations_etablissement.id= #{id}
+</select>
+<insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into informations_etablissement (enseigne, ind_publipo, siege, statut_diffusion, date_diffusion_base)
+    values (#{enseigne}, #{ind_publipo}, #{siege}, #{statut_diffusion}, #{date_diffusion_base})
+</insert>
+<update id="update">
+    update informations_etablissement set 
+    enseigne = #{enseigne},
+    ind_publipo = #{ind_publipo},
+    siege = #{siege},
+    statut_diffusion = #{statut_diffusion},
+    date_diffusion_base= #{date_diffusion_base } where id = #{id}
+</update>
+<delete id="delete">
+    delete from informations_etablissement where id = #{id}
+</delete>
+</mapper>

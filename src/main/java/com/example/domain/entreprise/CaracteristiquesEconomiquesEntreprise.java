@@ -2,7 +2,7 @@ package com.example.domain.entreprise;
 
 public class CaracteristiquesEconomiquesEntreprise {
 	private Long id;
-	private int nature_juridique;
+	private String nature_juridique;
 	private String lib_nature_juridique;
 	private String activite_principale;
 	private String lib_activite_principale;
@@ -14,10 +14,10 @@ public class CaracteristiquesEconomiquesEntreprise {
 		this.id = id;
 	}
 	private String activite_principale_registre_metier;
-	public int getNature_juridique() {
+	public String getNature_juridique() {
 		return nature_juridique;
 	}
-	public void setNature_juridique(int nature_juridique) {
+	public void setNature_juridique(String nature_juridique) {
 		this.nature_juridique = nature_juridique;
 	}
 	public String getLib_nature_juridique() {
