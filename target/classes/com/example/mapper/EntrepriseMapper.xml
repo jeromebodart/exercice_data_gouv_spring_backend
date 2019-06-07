@@ -33,7 +33,7 @@
     on e.id_entreprise = entreprise.id
     where e.id_entreprise = #{id}
 </select>
-<insert id="save" useGeneratedKeys="true" keyProperty="id">
+<insert id="save">
     insert into entreprise (siren, id_siege, id_identification_entreprise, id_caracteristiques) values (#{siren}, #{id_siege}, #{id_identification_entreprise}, #{id_caracteristiques})
 </insert>
 <update id="update">
@@ -42,7 +42,7 @@
 <delete id="delete">
     delete from entreprise where id = #{id}
 </delete>
-<select id="getMaxSiren"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
+<select id="getMaxSiren" resultType="java.lang.Long"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
     select siren from entreprise order by siren desc limit 1
 </select>
 </mapper>

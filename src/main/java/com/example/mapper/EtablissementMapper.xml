@@ -27,6 +27,9 @@
 <select id="findAll" resultMap="Etablissement_ResultMap">
     select * from etablissement
 </select>
+<select id="getMaxNic" resultType="java.lang.Long"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
+    select nic from etablissement order by nic desc limit 1
+</select>
 <insert id="save" useGeneratedKeys="true" keyProperty="id">
     insert into etablissement (nic, id_entreprise, id_adresse_declaree, id_adresse_normalisee, id_info, id_adresse_geographique, id_localisation_geographique, id_caracteristiques_economiques)
     values ((#{nic}, (#{id_entreprise}, (#{id_adresse_declaree}, (#{id_adresse_normalisee}, #{id_info}, #{id_adresse_geographique}, #{id_localisation_geographique}, #{id_caracteristiques_economiques})
