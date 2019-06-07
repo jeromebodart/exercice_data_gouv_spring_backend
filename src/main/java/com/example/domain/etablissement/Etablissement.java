@@ -7,7 +7,7 @@ import com.example.domain.entreprise.Entreprise;
 
 public class Etablissement {
 	private Long id;
-	private String nic;
+	private Long nic;
 	private Integer id_entreprise;
 	private Entreprise entreprise;
 	private AdresseDeclaree adresse_declaree;
@@ -23,7 +23,7 @@ public class Etablissement {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNic() {
+	public Long getNic() {
 		return nic;
 	}
 		
@@ -36,7 +36,7 @@ public class Etablissement {
 	public Entreprise getEntreprise() {
 		return entreprise;
 	}
-	public void setNic(String nic) {
+	public void setNic(Long nic) {
 		this.nic = nic;
 	}
 	public AdresseNormalisee getAdresse_normalisee() {
