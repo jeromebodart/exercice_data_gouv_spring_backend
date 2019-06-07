@@ -17,7 +17,8 @@ public class EntrepriseService {
 	private InformationsSiegeService informationsSiegeService;
 	private IdentificationEntrepriseService identificationEntrepriseService;
 	private CaracteristiquesEconomiquesEntrepriseService caracteristiquesEconomiquesEntrepriseService;
-
+	private MiseAJourService miseAJourService;
+ 	private EtablissementJoinUpdatesService etablissementJoinUpdatesService;
     @Transactional
     public List<Entreprise> findAll() {
         return entrepriseMapper.findAll();
@@ -33,10 +34,6 @@ public class EntrepriseService {
         return entrepriseMapper.findOne(id);
     }
 
-//    @Transactional
-//    public void save(Entreprise player) {
-//    	entrepriseMapper.save(player);
-//    }
 
     @Transactional
     public void update(Entreprise entreprise) {

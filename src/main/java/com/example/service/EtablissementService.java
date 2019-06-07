@@ -1,5 +1,8 @@
 package com.example.service;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.etablissement.Etablissement;
+import com.example.domain.etablissement.NatureUpdate;
 import com.example.mapper.EtablissementMapper;
 
 @Service
@@ -23,6 +27,7 @@ public class EtablissementService {
 	 	private MiseAJourService miseAJourService;
 	 	private EtablissementJoinUpdatesService etablissementJoinUpdatesService;
 	 	private EntrepriseService entrepriseService;
+	 	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS");
 
 	    @Transactional
 	    public List<Etablissement> findAll() {
@@ -67,6 +72,14 @@ public class EtablissementService {
 									 etablissement.getAdressegeographique().getId(),
 									 etablissement.getLocalisation().getId(),
 									 etablissement.getEconomies().getId());
+//	    	 Il faut ajouter la mise à jour VMAJ = 'C'
+			Calendar calendar = Calendar.getInstance();
+			miseAJourService.getInstance().setModification_activite_etablissement(NatureUpdate.C);
+			miseAJourService.getInstance().setDate(formatter.format(calendar.getTime()));
+			miseAJourService.getInstance().setModification_nature_etablissement(false);
+			miseAJourService.getInstance().setModification_entreprise(false);
+			miseAJourService.save(miseAJourService.getInstance());
+//			etablissementJoinUpdatesService.save(player);
 	    }
 
 	    private Long generateNic() {
@@ -76,6 +89,15 @@ public class EtablissementService {
 
 		@Transactional
 	    public void update(Etablissement etablissement) {
+//	    	 Il faut ajouter la mise à jour VMAJ = 'I' et 'F'
+//			Une deuxième VMAJ pour l'entrée ou non de l'établissmeent du champ de diffusion (jechoisis 'D' entrée par défaut)
+			entrepriseService.update(etablissement.getEntreprise());
+			adresseDeclareeService.update(etablissement.getAdresse_declaree());
+			adresseNormaliseeService.update(etablissement.getAdresse_normalisee());
+			informationsService.update(etablissement.getInfo());
+			adresseGeographiqueService.update(etablissement.getAdressegeographique());
+			localisationService.update(etablissement.getLocalisation());
+			caracteristiquesEconomiquesEtablissementService.update(etablissement.getEconomies());
 			etablissementMapper.update(etablissement.getNic(),
 					 etablissement.getEntreprise().getId(),
 					 etablissement.getAdresse_declaree().getId(),
@@ -84,10 +106,23 @@ public class EtablissementService {
 					 etablissement.getAdressegeographique().getId(),
 					 etablissement.getLocalisation().getId(),
 					 etablissement.getEconomies().getId());
+			Calendar calendar = Calendar.getInstance();
+//			Il faut changer cette état à I pour les anciennes mise à jour
+//			On veut trouver la mise à jour lier à l'établissement avec F sur la colonne setModification_activite_etablissement
+			etablissementJoinUpdatesService.findMany(etablissement.getId());
+			miseAJourService.findOne();
+			miseAJourService.getInstance().setModification_activite_etablissement(NatureUpdate.F);
+			miseAJourService.getInstance().setDate(formatter.format(calendar.getTime()));
+			miseAJourService.getInstance().setModification_nature_etablissement(true);
+			miseAJourService.getInstance().setModification_entreprise(false);
+			miseAJourService.save(miseAJourService.getInstance());
 	    }
 
 	    @Transactional
 	    public void delete(Long id) {
+//	    	On ne supprime pas l'établissement mais on lui associe une VMAJ à E dans la table MiseAJour
+//	    	etablissementJoinUpdatesService.
+//	    	miseAJourService.
 	    	etablissementMapper.delete(id);
 	    }
 }
