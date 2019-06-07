@@ -4,15 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.domain.etablissement.AdresseNormalisee;
+
 @Mapper
 public interface AdresseNormaliseeMapper {
-    List<AdresseNormaliseeMapper> findAll();
+    List<AdresseNormalisee> findAll();
 
-    AdresseNormaliseeMapper findOne(Long id);
+    AdresseNormalisee findOne(Long id);
 
-    void save(AdresseNormaliseeMapper player);
+    void save(AdresseNormalisee player);
 
-    void update(AdresseNormaliseeMapper player);
+    void update(AdresseNormalisee player);
 
     void delete(Long id);
 }

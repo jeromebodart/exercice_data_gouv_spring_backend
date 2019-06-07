@@ -13,7 +13,7 @@
         <result property="repertoire_nationale_associations" 			column="repertoire_nationale_associations" />
     </resultMap>
 
-<select id="get" resultType="com.example.domain.entreprise.IdentificationEntreprise" resultMap="IdentificationEntreprise_ResultMap">
+<select id="findOne" resultType="com.example.domain.entreprise.IdentificationEntreprise" resultMap="IdentificationEntreprise_ResultMap">
     select * from identification_entreprise where identification_entreprise.id= #{id}
 </select>
 <insert id="save" useGeneratedKeys="true" keyProperty="id">

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.domain.entreprise.InformationsSiege;
 
 @Mapper
-public interface SiegeMapper{
+public interface InformationsSiegeMapper{
     List<InformationsSiege> findAll();
 
     InformationsSiege findOne(Long id);
