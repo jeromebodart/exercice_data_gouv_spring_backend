@@ -3,7 +3,7 @@ package com.example.domain.etablissement;
 public class MiseAJour {
 	private Long id;
 	private String date;
-	private boolean modification_activite_etablissement;
+	private NatureUpdate modification_activite_etablissement;
 	private boolean modification_nature_etablissement;
 	private boolean modification_entreprise;
 	public Long getId() {
@@ -18,10 +18,10 @@ public class MiseAJour {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public boolean isModification_activite_etablissement() {
+	public NatureUpdate getModification_activite_etablissement() {
 		return modification_activite_etablissement;
 	}
-	public void setModification_activite_etablissement(boolean modification_activite_etablissement) {
+	public void setModification_activite_etablissement(NatureUpdate modification_activite_etablissement) {
 		this.modification_activite_etablissement = modification_activite_etablissement;
 	}
 	public boolean isModification_nature_etablissement() {
@@ -36,5 +36,6 @@ public class MiseAJour {
 	public void setModification_entreprise(boolean modification_entreprise) {
 		this.modification_entreprise = modification_entreprise;
 	}
+	
 	
 }

@@ -13,6 +13,14 @@ import com.example.mapper.MiseAJourMapper;
 public class MiseAJourService {
 	@Autowired
     private MiseAJourMapper miseAJourMapper;
+	
+    /** Instance unique pré-initialisée */
+    private static MiseAJour miseAJour;
+     
+    /** Point d'accès pour l'instance unique du singleton */
+    public static MiseAJour getInstance()
+    {   return miseAJour;
+    }
 
     @Transactional
     public List<MiseAJour> findAll() {
@@ -25,17 +33,17 @@ public class MiseAJourService {
     }
 
     @Transactional
-    public void save(MiseAJour player) {
-    	miseAJourMapper.save(player);
-    }
-
-    @Transactional
-    public void update(MiseAJour player) {
-    	miseAJourMapper.update(player);
+    public void update(MiseAJour miseAjour) {
+    	miseAJourMapper.update(miseAjour);
     }
 
     @Transactional
     public void delete(Long id) {
     	miseAJourMapper.delete(id);
     }
+
+	public void save(MiseAJour miseAjour) {
+		// TODO Auto-generated method stub
+		
+	}
 }

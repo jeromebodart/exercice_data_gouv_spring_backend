@@ -15,7 +15,7 @@
     select * from etablissement_join_updates where id = #{id}
 </select>
 <insert id="save" useGeneratedKeys="true" keyProperty="id">
-    insert into etablissement_join_updates (id, id_etablissement, id_updates) values (#{id}, #{id_etablissement}, #{id_updates})
+    insert into etablissement_join_updates (id_etablissement, id_updates) values (#{id_etablissement}, #{id_updates})
 </insert>
 <update id="update">
     update etablissement_join_updates set id = #{id}, id_etablissement = #{id_etablissement}, id_updates= #{id_updates} where id = #{id}
