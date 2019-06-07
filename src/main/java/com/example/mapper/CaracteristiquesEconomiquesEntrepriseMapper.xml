@@ -7,7 +7,7 @@
         <id 	property="id" 						column="id" />
     </resultMap>
 
-<select id="get" resultType="com.example.domain.entreprise.CaracteristiquesEconomiquesEntreprise" resultMap="CaracteristiquesEconomiquesEntreprise_ResultMap">
+<select id="findOne" resultType="com.example.domain.entreprise.CaracteristiquesEconomiquesEntreprise" resultMap="CaracteristiquesEconomiquesEntreprise_ResultMap">
     select * from caracteristiques_economiques_entreprise where caracteristiques_economiques_entreprise.id= #{id}
 </select>
 <insert id="save" useGeneratedKeys="true" keyProperty="id">

@@ -18,7 +18,12 @@ public class EntrepriseService {
     public List<Entreprise> findAll() {
         return entrepriseMapper.findAll();
     }
-
+    
+    @Transactional
+    public Long generateSiren() {
+        return entrepriseMapper.getMaxSiren() + 1;
+    }
+    
     @Transactional
     public Entreprise findOne(Long id) {
         return entrepriseMapper.findOne(id);

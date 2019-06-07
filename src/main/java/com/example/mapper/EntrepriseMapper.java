@@ -11,6 +11,8 @@ public interface EntrepriseMapper{
     List<Entreprise> findAll();
 
     Entreprise findOne(Long id);
+    
+    Long getMaxSiren();
 
     void save(Entreprise player);
 

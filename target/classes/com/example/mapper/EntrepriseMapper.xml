@@ -6,9 +6,9 @@
     <resultMap id="Entreprise_ResultMap" type="com.example.domain.entreprise.Entreprise">
         <id 	property="id" 						column="id" />
         <result property="siren" 			column="siren" />
-        <association property="siege" select="com.example.mapper.SiegeMapper.get" column="id_siege" />
-        <association property="identification_entreprise" select="com.example.mapper.IdentificationEntrepriseMapper.get" column="id_identification_entreprise" />
-        <association property="caracteristiques_economiques" select="com.example.mapper.CaracteristiquesEconomiquesEntrepriseMapper.get" column="id_caracteristiques" />
+        <association property="siege" select="com.example.mapper.InformationsSiegeMapper.findOne" column="id_siege" />
+        <association property="identification_entreprise" select="com.example.mapper.IdentificationEntrepriseMapper.findOne" column="id_identification_entreprise" />
+        <association property="caracteristiques_economiques" select="com.example.mapper.CaracteristiquesEconomiquesEntrepriseMapper.findOne" column="id_caracteristiques" />
         <!-- http://dongchuan.github.io/mybatis/2016/04/17/MyBatis-Advanced.html -->
         <collection property="etablissements" javaType="ArrayList" column="id_entreprise" ofType="com.example.domain.etablissement.Etablissement"> <!--ofType="com.example.domain.etablissement.Etablissement">-->
             <id 	property="id" 						column="etablissementID" />
@@ -26,8 +26,8 @@
     on e.id_entreprise = entreprise.id
 </select>
 <select id="findOne" resultMap="Entreprise_ResultMap">
-    select * from entreprise 
-	inner join 
+    select * from entreprise
+	inner join
     (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic
     from etablissement) as e
     on e.id_entreprise = entreprise.id
@@ -42,4 +42,7 @@
 <delete id="delete">
     delete from entreprise where id = #{id}
 </delete>
+<select id="getMaxSiren"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
+    select siren from entreprise order by siren desc limit 1
+</select>
 </mapper>
