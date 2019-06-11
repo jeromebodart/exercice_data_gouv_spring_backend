@@ -2,12 +2,12 @@ package com.example.domain.etablissement;
 
 public enum NatureUpdate {
 	  //Objets directement construits
-	  C ("Création d'établissement"),
-	  E ("Suppression d'établissement"),
-	  I ("Modification état initial"),
-	  F ("Modification état final"),
-	  D ("Entrée dans la diffusion"),
-	  O ("Sortie de la diffusion");
+	  C ("C"),
+	  E ("E"),
+	  I ("I"),
+	  F ("F"),
+	  D ("D"),
+	  O ("O");
 	   
 	  private String name = "";
 	   

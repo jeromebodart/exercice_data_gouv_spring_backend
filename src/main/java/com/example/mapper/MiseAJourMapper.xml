@@ -1,4 +1,4 @@
-.0<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.MiseAJourMapper">
 
@@ -13,16 +13,18 @@
 <select id="findAll" resultType="com.example.domain.etablissement.MiseAJour">
     select * from updates
 </select>
-<select id="findLastModified" resultType="com.example.domain.etablissement.MiseAJour">
-    <!--select * from updates
-    select * from etab updates.id = etablissement_join_updates.-->
+<select id="getMaxId" resultType="java.lang.Long"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
+    select id from updates order by id desc limit 1
 </select>
+<!-- <select id="findLastModified" resultType="com.example.domain.etablissement.MiseAJour">
+   select * from updates
+    select * from etab updates.id = etablissement_join_updates
+</select> -->
 <insert id="save" useGeneratedKeys="true" keyProperty="id">
     insert into updates (nature_update, modification_activite_etablissement, modification_nature_etablissement, modification_entreprise, date)
-    values (#{nature_update}, #{modification_activite_etablissement}, #{modification_nature_etablissement}, #{modification_entreprise})
+    values (#{nature_update}, #{modification_activite_etablissement}, #{modification_nature_etablissement}, #{modification_entreprise}, #{date});
 </insert>
 <update id="update">
-<!-- Mise A jour de l'ensemble de la colonne à F à I concernant l'établissement donné-->
     update updates set 
     nature_update = #{nature_update},
     modification_activite_etablissement = #{modification_activite_etablissement}, 
@@ -34,3 +36,4 @@
     delete from updates where id = #{id}
 </delete>
 </mapper>
+<!-- Mise A jour de l'ensemble de la colonne à F à I concernant l'établissement donné-->

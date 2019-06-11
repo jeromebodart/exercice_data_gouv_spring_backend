@@ -8,7 +8,7 @@
     </resultMap>
 
 <select id="get" resultType="com.example.domain.etablissement.AdresseDeclaree" resultMap="AdresseDeclaree_ResultMap">
-    select * from adresse_declaree where adresse_declaree.id = #{id}
+    select  * from adresse_declaree where adresse_declaree.id = #{id}
 </select>
 <insert id="save" useGeneratedKeys="true" keyProperty="id">
     insert into adresse_declaree (l1_declaree, l2_declaree, l3_declaree, l4_declaree, l5_declaree, l6_declaree, l7_declaree) 
