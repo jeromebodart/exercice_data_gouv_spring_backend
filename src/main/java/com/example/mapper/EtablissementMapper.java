@@ -20,8 +20,10 @@ public interface EtablissementMapper {
     void delete(Long id);
 
 	Long getMaxNic();
+	
+	Long getMaxId();
 
-	void save(@Param("nic") Long nic, 
+	void save(@Param("nic") String nic, 
 			  @Param("id_entreprise") Long id_entreprise,
 			  @Param("id_adresse_declaree") Long id_adresse_declaree,
 			  @Param("id_adresse_normalisee") Long id_adresse_normalisee,
@@ -30,7 +32,7 @@ public interface EtablissementMapper {
 			  @Param("id_localisation_geographique") Long id_localisation_geographique,
 			  @Param("id_caracteristiques_economiques") Long id_caracteristiques_economiques);
 	
-	void update(@Param("nic") Long nic, 
+	void update(@Param("nic") String nic, 
 			  @Param("id_entreprise") Long id_entreprise,
 			  @Param("id_adresse_declaree") Long id_adresse_declaree,
 			  @Param("id_adresse_normalisee") Long id_adresse_normalisee,

@@ -13,9 +13,11 @@ public interface MiseAJourMapper {
 
     MiseAJour findOne(Long id);
 
-    void save(MiseAJour player);
+    void save(MiseAJour miseAJour);
 
-    void update(MiseAJour player);
+    void update(MiseAJour miseAJour);
 
     void delete(Long id);
+
+	Long getMaxId();
 }

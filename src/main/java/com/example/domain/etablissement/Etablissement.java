@@ -8,7 +8,6 @@ import com.example.domain.entreprise.Entreprise;
 public class Etablissement {
 	private Long id;
 	private Long nic;
-	private Integer id_entreprise;
 	private Entreprise entreprise;
 	private AdresseDeclaree adresse_declaree;
 	private AdresseNormalisee adresse_normalisee;
@@ -26,18 +25,17 @@ public class Etablissement {
 	public Long getNic() {
 		return nic;
 	}
-		
-	public Integer getId_entreprise() {
-		return id_entreprise;
-	}
-	public void setId_entreprise(Integer id_entreprise) {
-		this.id_entreprise = id_entreprise;
-	}
 	public Entreprise getEntreprise() {
 		return entreprise;
 	}
 	public void setNic(Long nic) {
 		this.nic = nic;
+	}
+	public AdresseDeclaree getAdresse_declaree() {
+		return adresse_declaree;
+	}
+	public void setAdresse_declaree(AdresseDeclaree adresse_declaree) {
+		this.adresse_declaree = adresse_declaree;
 	}
 	public AdresseNormalisee getAdresse_normalisee() {
 		return adresse_normalisee;
@@ -68,12 +66,6 @@ public class Etablissement {
 	}
 	public void setEconomies(CaracteristiquesEconomiquesEtablissement economies) {
 		this.economies = economies;
-	}
-	public AdresseDeclaree getAdresse_declaree() {
-		return adresse_declaree;
-	}
-	public void setAdresse_declaree(AdresseDeclaree adresse_declaree) {
-		this.adresse_declaree = adresse_declaree;
 	}
 	public List<MiseAJour> getMises_a_jour() {
 		return mises_a_jour;
