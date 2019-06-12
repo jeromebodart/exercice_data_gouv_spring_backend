@@ -9,7 +9,7 @@ public class Localisation {
 	private String canton;
 	private String commune;
 	private String lib_commune;
-	private String departmeent_unite_urbaine;
+	private String departement_unite_urbaine;
 	private String taille_unite_urbaine;
 	private String num_unite_urbaine;
 	private String epci;
@@ -63,11 +63,11 @@ public class Localisation {
 	public void setLib_commune(String lib_commune) {
 		this.lib_commune = lib_commune;
 	}
-	public String getDepartmeent_unite_urbaine() {
-		return departmeent_unite_urbaine;
+	public String getDepartement_unite_urbaine() {
+		return departement_unite_urbaine;
 	}
-	public void setDepartmeent_unite_urbaine(String departmeent_unite_urbaine) {
-		this.departmeent_unite_urbaine = departmeent_unite_urbaine;
+	public void setDepartement_unite_urbaine(String departement_unite_urbaine) {
+		this.departement_unite_urbaine = departement_unite_urbaine;
 	}
 	public String getTaille_unite_urbaine() {
 		return taille_unite_urbaine;
@@ -99,5 +99,6 @@ public class Localisation {
 	public void setZemet(String zemet) {
 		this.zemet = zemet;
 	}
+	
 	
 }

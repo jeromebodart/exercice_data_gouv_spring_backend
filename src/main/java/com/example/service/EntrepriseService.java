@@ -13,12 +13,16 @@ import com.example.mapper.EntrepriseMapper;
 public class EntrepriseService {
     @Autowired
     private EntrepriseMapper entrepriseMapper;
-
+    @Autowired
 	private InformationsSiegeService informationsSiegeService;
+    @Autowired
 	private IdentificationEntrepriseService identificationEntrepriseService;
+    @Autowired
 	private CaracteristiquesEconomiquesEntrepriseService caracteristiquesEconomiquesEntrepriseService;
-	private MiseAJourService miseAJourService;
- 	private EtablissementJoinUpdatesService etablissementJoinUpdatesService;
+//    @Autowired
+//	private MiseAJourService miseAJourService;
+//    @Autowired
+// 	private EtablissementJoinUpdatesService etablissementJoinUpdatesService;
     @Transactional
     public List<Entreprise> findAll() {
         return entrepriseMapper.findAll();
@@ -40,7 +44,7 @@ public class EntrepriseService {
     	informationsSiegeService.update(entreprise.getSiege());
     	identificationEntrepriseService.update(entreprise.getIdentification_entreprise());
     	caracteristiquesEconomiquesEntrepriseService.update(entreprise.getCaracteristiques_economiques());
-    	entrepriseMapper.update(entreprise.getSiren(), entreprise.getSiege().getId(), entreprise.getIdentification_entreprise().getId(), entreprise.getCaracteristiques_economiques().getId());
+    	entrepriseMapper.update(entreprise.getId(), String.format("%09d", entreprise.getSiren()), entreprise.getSiege().getId(), entreprise.getIdentification_entreprise().getId(), entreprise.getCaracteristiques_economiques().getId());
     }
 
     @Transactional
@@ -60,8 +64,8 @@ public class EntrepriseService {
 		if (entreprise.getCaracteristiques_economiques().getId() == null) {
 			caracteristiquesEconomiquesEntrepriseService.save(entreprise.getCaracteristiques_economiques());
 		}
-		Long siren = generateSiren();
-		entreprise.setSiren(siren++);
-		entrepriseMapper.save(siren, entreprise.getSiege().getId(), entreprise.getIdentification_entreprise().getId(), entreprise.getCaracteristiques_economiques().getId());
+		Long siren = generateSiren() + 1;
+		entreprise.setSiren(siren);
+		entrepriseMapper.save(String.format("%09d", entreprise.getSiren()), entreprise.getSiege().getId(), entreprise.getIdentification_entreprise().getId(), entreprise.getCaracteristiques_economiques().getId());
 	}
 }
