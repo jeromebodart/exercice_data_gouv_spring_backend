@@ -10,22 +10,24 @@
         <result property="prenom" 			column="prenom" />
         <result property="nom" 			column="nom" />
         <result property="civilite" 			column="civilite" />
-        <result property="repertoire_nationale_associations" 			column="repertoire_nationale_associations" />
+        <result property="repertoire_national_associations" 			column="repertoire_national_associations" />
     </resultMap>
 
 <select id="findOne" resultType="com.example.domain.entreprise.IdentificationEntreprise" resultMap="IdentificationEntreprise_ResultMap">
     select * from identification_entreprise where identification_entreprise.id= #{id}
 </select>
 <insert id="save" useGeneratedKeys="true" keyProperty="id">
-    insert into identification_entreprise (siren, id_siege, id_identification_entreprise, id_caracteristiques)
-    values (#{siren}, #{id_siege}, #{id_identification_entreprise}, #{id_caracteristiques})
+    insert into identification_entreprise (raison_sociale, sigle, prenom, nom, civilite, repertoire_national_associations)
+    values (#{raison_sociale}, #{sigle}, #{prenom}, #{nom}, #{civilite}, #{repertoire_national_associations})
 </insert>
 <update id="update">
     update identification_entreprise set 
-    siren = #{siren},
-    id_siege = #{id_siege},
-    id_identification_entreprise = #{id_identification_entreprise},
-    id_caracteristiques= #{id_caracteristiques } where id = #{id}
+    raison_sociale = #{raison_sociale},
+    sigle = #{sigle},
+    prenom = #{prenom},
+    nom= #{nom },
+	civilite= #{civilite},
+	repertoire_national_associations = #{repertoire_national_associations} where id = #{id}
 </update>
 <delete id="delete">
     delete from identification_entreprise where id = #{id}

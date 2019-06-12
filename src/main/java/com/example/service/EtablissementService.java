@@ -33,12 +33,12 @@ public class EtablissementService {
 	@Autowired
 	private LocalisationService localisationService;
 	@Autowired
-	private MiseAJourService miseAJourService;
-	@Autowired
-	private EtablissementJoinUpdatesService etablissementJoinUpdatesService;
-	@Autowired
 	private EntrepriseService entrepriseService;
-	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+//	@Autowired
+//	private MiseAJourService miseAJourService;
+//	@Autowired
+//	private EtablissementJoinUpdatesService etablissementJoinUpdatesService;
+//	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 
 	@Transactional
 	public List<Etablissement> findAll() {
@@ -73,8 +73,9 @@ public class EtablissementService {
 		if(etablissement.getEconomies().getId() == null ) {
 			caracteristiquesEconomiquesEtablissementService.save(etablissement.getEconomies());
 		}
-		Long nic = generateNic();
-		etablissement.setNic(nic++);etablissementMapper.save(String.format("%05d", etablissement.getNic()),
+		Long nic = generateNic() + 1;
+		etablissement.setNic(nic);
+		etablissementMapper.save(String.format("%05d", etablissement.getNic()),
 				etablissement.getEntreprise().getId(),
 				etablissement.getAdresse_declaree().getId(),
 				etablissement.getAdresse_normalisee().getId(),
@@ -83,25 +84,20 @@ public class EtablissementService {
 				etablissement.getLocalisation().getId(),
 				etablissement.getEconomies().getId());
 		//			We have id_etablissement we can add to EtablissementJoinUpdates
-		EtablissementJoinUpdates eJS = EtablissementJoinUpdatesService.getInstance();
-		eJS.setId_etablissement(getMaxIdEtablissement());
-		//	    	 Il faut ajouter la mise à jour VMAJ = 'C'
-		Calendar calendar = Calendar.getInstance();
-//		MiseAJourService.getInstance().setNature_update(NatureUpdate.C);
-//		MiseAJourService.getInstance().setDate(formatter.format(calendar.getTime()));
-//		MiseAJourService.getInstance().setModification_activite_etablissement(false);
-//		MiseAJourService.getInstance().setModification_nature_etablissement(false);
-//		MiseAJourService.getInstance().setModification_entreprise(false);
-		MiseAJour mAJ = MiseAJourService.getInstance();
-		mAJ.setNature_update(NatureUpdate.C);
-		mAJ.setDate(formatter.format(calendar.getTime()));
-		mAJ.setModification_activite_etablissement(0);
-		mAJ.setModification_nature_etablissement(0);
-		mAJ.setModification_entreprise(0);
-		miseAJourService.save(mAJ);
-		//			We have id_MiseAJour we can add to EtablissementJoinUpdates
-		eJS.setId_updates(miseAJourService.getMaxId());
-		etablissementJoinUpdatesService.save(eJS);
+//		EtablissementJoinUpdates eJS = EtablissementJoinUpdatesService.getInstance();
+//		eJS.setId_etablissement(getMaxIdEtablissement());
+//		//	    	 Il faut ajouter la mise à jour VMAJ = 'C'
+//		Calendar calendar = Calendar.getInstance();
+//		MiseAJour mAJ = MiseAJourService.getInstance();
+//		mAJ.setNature_update(NatureUpdate.C);
+//		mAJ.setDate(formatter.format(calendar.getTime()));
+//		mAJ.setModification_activite_etablissement(0);
+//		mAJ.setModification_nature_etablissement(0);
+//		mAJ.setModification_entreprise(0);
+//		miseAJourService.save(mAJ);
+//		//			We have id_MiseAJour we can add to EtablissementJoinUpdates
+//		eJS.setId_updates(miseAJourService.getMaxId());
+//		etablissementJoinUpdatesService.save(eJS);
 	}
 	
 	private Long generateNic() {
@@ -118,16 +114,19 @@ public class EtablissementService {
 
 	@Transactional
 	public void update(Etablissement etablissement) {
+//		int activite_etablissement_modifiee = 0;
 		//	    	 Il faut ajouter la mise à jour VMAJ = 'I' et 'F'
 		//			Une deuxième VMAJ pour l'entrée ou non de l'établissmeent du champ de diffusion (je choisis 'D' entrée par défaut)
-		entrepriseService.update(etablissement.getEntreprise());
+//		Etablissement formerEtablissement = findOne(etablissement.getId());	
+		entrepriseService.update(entrepriseService.findOne(etablissement.getEntreprise().getId()));
 		adresseDeclareeService.update(etablissement.getAdresse_declaree());
 		adresseNormaliseeService.update(etablissement.getAdresse_normalisee());
 		informationsService.update(etablissement.getInfo());
 		adresseGeographiqueService.update(etablissement.getAdressegeographique());
 		localisationService.update(etablissement.getLocalisation());
 		caracteristiquesEconomiquesEtablissementService.update(etablissement.getEconomies());
-		etablissementMapper.update(String.format("%05d", etablissement.getNic()),
+		etablissementMapper.update(etablissement.getId(),
+				String.format("%05d", etablissement.getNic()),
 				etablissement.getEntreprise().getId(),
 				etablissement.getAdresse_declaree().getId(),
 				etablissement.getAdresse_normalisee().getId(),
@@ -135,10 +134,25 @@ public class EtablissementService {
 				etablissement.getAdressegeographique().getId(),
 				etablissement.getLocalisation().getId(),
 				etablissement.getEconomies().getId());
-		Calendar calendar = Calendar.getInstance();
-		//			Il faut changer cette état à I pour les anciennes mise à jour
-		//			On veut trouver la mise à jour lier à l'établissement avec F sur la colonne setModification_activite_etablissement
-		//			etablissementJoinUpdatesService.findMany();
+//		We have id_etablissement we can add to EtablissementJoinUpdates
+//		EtablissementJoinUpdates eJS = EtablissementJoinUpdatesService.getInstance();
+//		eJS.setId_etablissement(getMaxIdEtablissement());
+//		//			Il faut changer cette état à I pour les anciennes mise à jour
+//		//			On veut trouver la mise à jour lier à l'établissement avec F sur la colonne setModification_activite_etablissement
+//		EtablissementJoinUpdatesService.
+//		//	    	 Il faut ajouter la mise à jour VMAJ = 'C'
+//		Calendar calendar = Calendar.getInstance();
+//		MiseAJour mAJ = MiseAJourService.getInstance();
+//		mAJ.setNature_update(NatureUpdate.F);
+//		mAJ.setDate(formatter.format(calendar.getTime()));
+//		mAJ.setModification_activite_etablissement(activite_etablissement_modifiee);
+//		mAJ.setModification_nature_etablissement(0);
+//		mAJ.setModification_entreprise(0);
+//		miseAJourService.save(mAJ);
+//		//			We have id_MiseAJour we can add to EtablissementJoinUpdates
+//		eJS.setId_updates(miseAJourService.getMaxId());
+//		etablissementJoinUpdatesService.save(eJS);
+
 		
 	}
 

@@ -16,7 +16,7 @@
 </insert>
 <update id="update">
     update caracteristiques_economiques_entreprise set 
-    lib_nature_juridique = #{nature_juridique},
+    nature_juridique = #{nature_juridique},
     lib_nature_juridique = #{lib_nature_juridique},
     activite_principale = #{activite_principale},
     lib_activite_principale = #{lib_activite_principale},

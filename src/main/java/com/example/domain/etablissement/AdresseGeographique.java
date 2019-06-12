@@ -6,10 +6,9 @@ public class AdresseGeographique {
 	private String numvoie;
 	private String indrep;
 	private String typvoie;
-	private String lib_voie;
+	private String libvoie;
 	private String codpos;
 	private String cedex;
-	
 	public Long getId() {
 		return id;
 	}
@@ -34,11 +33,11 @@ public class AdresseGeographique {
 	public void setTypvoie(String typvoie) {
 		this.typvoie = typvoie;
 	}
-	public String getLib_voie() {
-		return lib_voie;
+	public String getLibvoie() {
+		return libvoie;
 	}
-	public void setLib_voie(String lib_voie) {
-		this.lib_voie = lib_voie;
+	public void setLibvoie(String libvoie) {
+		this.libvoie = libvoie;
 	}
 	public String getCodpos() {
 		return codpos;
@@ -52,5 +51,7 @@ public class AdresseGeographique {
 	public void setCedex(String cedex) {
 		this.cedex = cedex;
 	}
+	
+	
 	
 }

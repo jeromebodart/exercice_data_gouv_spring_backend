@@ -7,7 +7,7 @@ public class IdentificationEntreprise {
 	private String nom;
 	private String prenom;
 	private String civilite;
-	private String repertoire_nationale_associations;
+	private String repertoire_national_associations;
 	public Long getId() {
 		return id;
 	}
@@ -44,11 +44,11 @@ public class IdentificationEntreprise {
 	public void setCivilite(String civilite) {
 		this.civilite = civilite;
 	}
-	public String getRepertoire_nationale_associations() {
-		return repertoire_nationale_associations;
+	public String getRepertoire_national_associations() {
+		return repertoire_national_associations;
 	}
-	public void setRepertoire_nationale_associations(String repertoire_nationale_associations) {
-		this.repertoire_nationale_associations = repertoire_nationale_associations;
+	public void setRepertoire_national_associations(String repertoire_nationale_associations) {
+		this.repertoire_national_associations = repertoire_nationale_associations;
 	}
 	
 }

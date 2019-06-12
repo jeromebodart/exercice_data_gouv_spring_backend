@@ -3,11 +3,10 @@ package com.example.domain.etablissement;
 public class Informations {
 	private Long id;
 	private String enseigne;
-	private boolean ind_publipo;
-	private boolean siege;
-	private boolean statut;
+	private int ind_publipo;
+	private int siege;
+	private int statut_diffusion;
 	private String date_diffusion_base;
-	
 	public Long getId() {
 		return id;
 	}
@@ -20,23 +19,23 @@ public class Informations {
 	public void setEnseigne(String enseigne) {
 		this.enseigne = enseigne;
 	}
-	public boolean isInd_publipo() {
+	public int getInd_publipo() {
 		return ind_publipo;
 	}
-	public void setInd_publipo(boolean ind_publipo) {
+	public void setInd_publipo(int ind_publipo) {
 		this.ind_publipo = ind_publipo;
 	}
-	public boolean isSiege() {
+	public int getSiege() {
 		return siege;
 	}
-	public void setSiege(boolean siege) {
+	public void setSiege(int siege) {
 		this.siege = siege;
 	}
-	public boolean isStatut() {
-		return statut;
+	public int getStatut_diffusion() {
+		return statut_diffusion;
 	}
-	public void setStatut(boolean statut) {
-		this.statut = statut;
+	public void setStatut_diffusion(int statut_diffusion) {
+		this.statut_diffusion = statut_diffusion;
 	}
 	public String getDate_diffusion_base() {
 		return date_diffusion_base;
@@ -44,5 +43,7 @@ public class Informations {
 	public void setDate_diffusion_base(String date_diffusion_base) {
 		this.date_diffusion_base = date_diffusion_base;
 	}
+	
+	
 	
 }

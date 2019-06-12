@@ -13,9 +13,9 @@
         <association property="adressegeographique" select="com.example.mapper.AdresseGeographiqueMapper.get" column="id_adresse_geographique" />
         <association property="localisation" select="com.example.mapper.LocalisationMapper.get" column="id_localisation_geographique" />
         <association property="economies" select="com.example.mapper.CaracteristiquesEconomiquesEtablissementMapper.get" column="id_caracteristiques_economiques" />
-        <collection property="mises_a_jour" javaType="ArrayList" column="id_updates" ofType="com.example.domain.etablissement.MiseAJour"> 
+        <!-- <collection property="mises_a_jour" javaType="ArrayList" column="id_updates" ofType="com.example.domain.etablissement.MiseAJour"> 
             <id 	property="id" 						column="id" />
-        </collection>
+        </collection> -->
     </resultMap>
 
 <select id="findOne" resultType="com.example.domain.etablissement.Etablissement" resultMap="Etablissement_ResultMap">

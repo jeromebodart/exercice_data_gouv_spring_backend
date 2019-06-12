@@ -15,9 +15,17 @@ public interface EntrepriseMapper{
     
     Long getMaxSiren();
     
-    void save(@Param("siren")  Long siren, @Param("id_siege") Long id_siege, @Param("id_identification_entreprise") Long id_identification_entreprise, @Param("id_caracteristiques") Long id_caracteristiques);
+    void save(@Param("siren")  String siren,
+    		  @Param("id_siege") Long id_siege,
+    		  @Param("id_identification_entreprise") Long id_identification_entreprise,
+    		  @Param("id_caracteristiques") Long id_caracteristiques);
 
-    void update(@Param("siren")  Long siren, @Param("id_siege") Long id_siege, @Param("id_identification_entreprise") Long id_identification_entreprise, @Param("id_caracteristiques") Long id_caracteristiques);
+    void update(@Param("id")  Long id,
+    			@Param("siren")  String siren,
+    			@Param("id_siege") Long id_siege,
+    			@Param("id_identification_entreprise") Long id_identification_entreprise,
+    			@Param("id_caracteristiques") Long id_caracteristiques);
 
     void delete(Long id);
+
 }

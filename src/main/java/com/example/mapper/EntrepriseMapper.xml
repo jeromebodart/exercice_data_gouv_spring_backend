@@ -12,26 +12,26 @@
         <!-- http://dongchuan.github.io/mybatis/2016/04/17/MyBatis-Advanced.html -->
         <collection property="etablissements" javaType="ArrayList" column="id_entreprise" ofType="com.example.domain.etablissement.Etablissement"> <!--ofType="com.example.domain.etablissement.Etablissement">-->
             <id 	property="id" 						column="etablissementID" />
-            <result 	property="id_entreprise" 						column="id_entreprise" />
             <result property="nic" 			column="nic" />
         </collection>
     </resultMap>
 
 
 <select id="findAll" resultMap="Entreprise_ResultMap"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
+<!-- left join because we want all enterprises -->
     select * from entreprise 
-	inner join 
+	left join 
     (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic
     from etablissement) as e
     on e.id_entreprise = entreprise.id
 </select>
 <select id="findOne" resultMap="Entreprise_ResultMap">
     select * from entreprise
-	inner join
+	left join
     (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic
     from etablissement) as e
     on e.id_entreprise = entreprise.id
-    where e.id_entreprise = #{id}
+    where entreprise.id = #{id}
 </select>
 <insert id="save" keyProperty="id">
     insert into entreprise (siren, id_siege, id_identification_entreprise, id_caracteristiques) values (#{siren}, #{id_siege}, #{id_identification_entreprise}, #{id_caracteristiques})
@@ -42,7 +42,7 @@
 <delete id="delete">
     delete from entreprise where id = #{id}
 </delete>
-<select id="getMaxSiren" resultType="java.lang.Long"> <!-- resultType="com.example.domain.entreprise.Entreprise" -->
+<select id="getMaxSiren" resultType="java.lang.Long">
     select siren from entreprise order by siren desc limit 1
 </select>
 
