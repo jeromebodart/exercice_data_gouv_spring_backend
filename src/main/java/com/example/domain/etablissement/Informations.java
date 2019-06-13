@@ -5,7 +5,7 @@ public class Informations {
 	private String enseigne;
 	private int ind_publipo;
 	private int siege;
-	private int statut_diffusion;
+	private char statut_diffusion;
 	private String date_diffusion_base;
 	public Long getId() {
 		return id;
@@ -31,10 +31,10 @@ public class Informations {
 	public void setSiege(int siege) {
 		this.siege = siege;
 	}
-	public int getStatut_diffusion() {
+	public char getStatut_diffusion() {
 		return statut_diffusion;
 	}
-	public void setStatut_diffusion(int statut_diffusion) {
+	public void setStatut_diffusion(char statut_diffusion) {
 		this.statut_diffusion = statut_diffusion;
 	}
 	public String getDate_diffusion_base() {
