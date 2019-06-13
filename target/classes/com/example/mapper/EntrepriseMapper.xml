@@ -13,6 +13,7 @@
         <collection property="etablissements" javaType="ArrayList" column="id_entreprise" ofType="com.example.domain.etablissement.Etablissement"> <!--ofType="com.example.domain.etablissement.Etablissement">-->
             <id 	property="id" 						column="etablissementID" />
             <result property="nic" 			column="nic" />
+            <association property="adresse_normalisee" select="com.example.mapper.AdresseNormaliseeMapper.get" column="id_adresse_normalisee" />
         </collection>
     </resultMap>
 
@@ -21,14 +22,14 @@
 <!-- left join because we want all enterprises -->
     select * from entreprise 
 	left join 
-    (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic
+    (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic, etablissement.id_adresse_normalisee as id_adresse_normalisee
     from etablissement) as e
     on e.id_entreprise = entreprise.id
 </select>
 <select id="findOne" resultMap="Entreprise_ResultMap">
     select * from entreprise
 	left join
-    (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic
+    (select etablissement.id as etablissementID, etablissement.id_entreprise, etablissement.nic, etablissement.id_adresse_normalisee as id_adresse_normalisee
     from etablissement) as e
     on e.id_entreprise = entreprise.id
     where entreprise.id = #{id}
